@@ -1,10 +1,18 @@
-import mongoose from 'mongoose';
+import mongoose, { Schema,Document } from "mongoose";
 
-// Defining the Schema object for MongoDB
-const Schema = mongoose.Schema;
+export interface IBrowserSession extends Document {
+    Topic:string;
+    TopicDescription:string;
+    RepoName:string;
+    RepoUrl:string;
+    Stars:Number;
+    Description:string;
+    Tags:any[];
+
+}
 
 // Defining the schema for the 'Repository' model
-const repoSchema = new Schema({
+const repoSchema = new Schema<IBrowserSession>({
     // Topic name related to the repository
     Topic: {
         type: String,  // The 'Topic' field is a string
@@ -47,10 +55,13 @@ const repoSchema = new Schema({
 }, { timestamps: true });  // Automatically adds 'createdAt' and 'updatedAt' fields
 
 // Creating the 'Repository' model based on the schema
-const Repository = mongoose.model('Repository', repoSchema);
+const RepositoryModel = mongoose.model<IBrowserSession>(
+    'Repository',
+     repoSchema
+    );
 
 // Exporting the model to be used in other parts of the application
-export default Repository;
+export default RepositoryModel;
 
 
 

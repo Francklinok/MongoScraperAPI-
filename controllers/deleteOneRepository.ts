@@ -1,7 +1,8 @@
-import RepositoryModel from '../models/model.js';
+import { Request, Response } from 'express';
+import RepositoryModel from '../models/RepositoryModel.js';
 
 // Delete a repository by its ID
-export const deleteRepository = async (req, res) => {
+export const deleteOneRepository = async (req:Request, res:Response) => {
     try {
         // Get the repository ID from the request parameters
         const repositoryId = req.params.id;

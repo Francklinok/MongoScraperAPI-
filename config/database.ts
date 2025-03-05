@@ -1,7 +1,8 @@
-import mongoose from "mongoose"
+import mongoose from "mongoose";
+import logger from "../utils/logger";
 
 
-const connectDB = async() =>{
+export const connectDB = async() =>{
     try{
         await mongoose.connect(process.env.dbURL || '');
         logger.info('mongoDB connected successfully');
@@ -12,4 +13,3 @@ const connectDB = async() =>{
     }
 }
 
-export default connectDB
